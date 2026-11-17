@@ -22,8 +22,9 @@ test/            bun test，使用本地假 OpenAI 服务，不访问网络
 # 1. Typesafe（兜底）
 magpie provider add typesafe <TYPESAFE_API_KEY>
 
-# 2. 插件：路径填 Magpie 所在机器上的绝对路径
-magpie plugin add /abs/path/to/magpie-plugin-openai-decisions
+# 2. 插件：从 GitHub 安装，或填 Magpie 所在机器上的本地绝对路径
+magpie plugin add github:vurihuang/magpie-plugin-openai-decisions
+# magpie plugin add /abs/path/to/magpie-plugin-openai-decisions
 magpie plugin login openai-decide            # 按提示粘贴 OpenAI API key
 
 # 3. 路由 group：OpenAI 优先，失败再 Typesafe；stays=off 必须设
@@ -55,3 +56,7 @@ curl -s http://127.0.0.1:3425/v1/systemone -H 'Authorization: Bearer magpie' -H 
 - 失败不会变成答案：OpenAI 的 401/402/429/5xx 保持原状态码（Magpie 据此回落）；超时 504；不完整、被拒答、概率不自洽或数量不符的响应为 502。回落后失败成员约退避 1 分钟再恢复。
 - 选项（`magpie plugin options <路径> '<json>'`，`off` 清除）：`timeoutMs`（默认 8000）、`upstream`（默认 `https://api.openai.com/v1/decisions`，测试时指向假服务）。
 - OpenAI 与 Jev 的置信度分布不同；若客户端按置信度门槛取舍，切为主用前先做影子对比。
+
+## 许可
+
+MIT，见 [LICENSE](LICENSE)。仓库带 `magpie-plugin` topic，会出现在 Magpie 的 Plugins → Discover → Unofficial。
