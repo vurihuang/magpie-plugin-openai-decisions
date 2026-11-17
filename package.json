@@ -1,0 +1,21 @@
+{
+  "name": "magpie-openai-decisions",
+  "version": "0.1.0",
+  "private": true,
+  "description": "OpenAI's Decisions API as a Magpie System One decision provider, so it can sit in a routing group beside typesafe/jev-latest",
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": { ".": "./index.mjs" },
+  "files": ["index.mjs", "translate.mjs"],
+  "scripts": { "test": "bun test" },
+  "keywords": ["opencode", "opencode-plugin", "magpie-plugin", "magpie", "openai", "decisions", "systemone"],
+  "license": "UNLICENSED",
+  "magpie": {
+    "name": "OpenAI Decisions",
+    "summary": {
+      "en": "OpenAI's Decisions API (gpt-6-luna) as a System One decision model, usable in a routing group beside typesafe/jev-latest.",
+      "zh": "把 OpenAI Decisions API（gpt-6-luna）注册为 System One 决策模型，可与 typesafe/jev-latest 同组路由。"
+    },
+    "options": { "timeoutMs": 8000 }
+  }
+}
